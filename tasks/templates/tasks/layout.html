@@ -7,6 +7,11 @@
     <title>Document</title>
 </head>
 <body>
+<ul>
+    <li><a href="{% url 'tasks:index' %}">index</a></li>
+    <li><a href="{% url 'tasks:add' %}">Add Task</a></li>
+</ul>   
+
     <h1>tasks</h1>
 {% block content%} 
 {% endblock %}  
