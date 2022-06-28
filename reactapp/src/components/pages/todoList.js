@@ -1,10 +1,9 @@
-import React ,{ Component, useState} from 'react';
+import React ,{ useState} from 'react';
 import EditableLabel from 'react-inline-editing';
 
 const TodoList = (props) => {
-    const APIURL='http://localhost:8000/api'
     const [todo, setTodo] = useState([])
-    // console.log('props', props);
+    console.log('props', props);
 
     const {todos, onInsert, onDelete, onEdit} = props
 

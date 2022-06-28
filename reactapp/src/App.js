@@ -9,17 +9,16 @@ import TodoList from './components/pages/todoList';
 
 
 function App() {
-  
-  const [todos, setTodos] = useState([
-    {id:1, title: "Lag Ja Gale", description: " Woh Kaun Thi " , created_at: '2022',done: false},
-    {id:2, title: "Tum Se Hi", description: " Jab We Met " , created_at: '2022',done: false},
-    {id:3, title: "Tum Hi Ho", description: " Aashiqui 2 " , created_at: '2022',done: false},
-    {id:4, title: "Mast Magan", description: " 2 States " , created_at: '2022',done: false},
-    {id:5, title: "Soch Na Sake", description: " Airlift " , created_at: '2022',done: false},
-    {id:6, title: "Sab Tera", description: " Baaghi " , created_at: '2022',done: true},
-    {id:7, title: "Kaun Tujhe", description: " M.S. Dhoni: The Untold Story " , created_at: '2022',done: true},
-    {id:8, title: "Humsafar", description: " Badrinath Ki Dulhania " , created_at: '2022',done: false}
-  ])
+  const APIURL='http://localhost:8000/api/tasks'
+  // const APIURL = 'https://jsonplaceholder.typicode.com/todos'
+
+  const [todos, setTodos] = useState([])
+  useEffect(() => {
+    fetch(APIURL)
+    .then(res => res.json())
+    .then(data => setTodos(data))
+  }, [])
+
   const AddTodo = (todo) => {
     setTodos([...todos, todo])
   }
@@ -46,7 +45,6 @@ function App() {
         todos={todos}
         onInsert={AddTodo}
         onDelete={DeleteTodo}
-        onEdit={EditTodo}
         onEdit={EditTodo}
 
       />
