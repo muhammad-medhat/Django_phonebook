@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const TodoSingle = (props)=>  {
     const editTODO = (t)=>{
         console.log('edit', t)
-        this.props.history.replace(`/todoform/${t.id}/${t.title}`)
+        // this.props.history.replace(`/todoform/${t.id}/${t.title}`)
     }
-    const {todo, onDelete} = props
+    const {todo, del} = props
         const t = todo
        console.log(`props ${t.id}`, props);
     //    console.log('single task', t);
@@ -16,11 +16,15 @@ const TodoSingle = (props)=>  {
                 <td>{t.title}</td>
                 <td>{t.description}</td>
 
-                <td>ee
-                    <i className="fas fa-edit" onClick={()=>editTODO(t)}></i>
+                <td onClick={()=>editTODO(t)}>ee
+                    <i className="fas fa-edit" ></i>
                 </td>
-                <td>dd
-                    {/* <i className="far fa-trash-alt" onClick={onDelete(t)}></i> */}
+                <td>
+                    <span onClick={()=>del(t.id)}>
+                    dd
+                        <i className="far fa-trash-alt" ></i>
+
+                    </span>
                 </td>
 
 

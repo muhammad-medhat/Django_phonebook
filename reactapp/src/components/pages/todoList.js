@@ -52,7 +52,7 @@ const TodoList = (props) => {
                             return(
                                 <TodoSingle key={t.id} 
                                     todo={t}
-                                    // onDelete={onDelete}
+                                    del={onDelete}
                                 />
 
                             )

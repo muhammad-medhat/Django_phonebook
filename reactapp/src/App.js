@@ -16,8 +16,8 @@ function App() {
   const [todos, setTodos] = useState([])
   useEffect(() => {
     console.log('useEffect...')
-    const start = new Date().getTime()
-    console.log(start)
+                      // const start = new Date().getTime()
+                      // console.log(start)
     loadTodos()
   }, [])
   
@@ -43,14 +43,11 @@ const loadTodos = () => {
 
   }
   const DeleteTodo = (id) => {
-    //console.log(`deleting: ${id}`)
+    console.log(`deleting: ${id}`)
     setTodos(todos.filter(todo => todo.id !== id))
+
     //delete todo from Backend
-    fetch(`${APIURL}/${id}`, {
-      method: 'DELETE'
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
+    deleteB(id)
 
   }
   const editTodo = (task) => {
@@ -84,7 +81,15 @@ const loadTodos = () => {
 
   }
 
-    
+  //backend crud operations
+
+    const deleteB = (id) => {
+      fetch(`${APIURL}/${id}`, {
+        method: 'DELETE'
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+    }
 
   return (
     <div className="App">
