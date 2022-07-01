@@ -51,22 +51,22 @@ const loadTodos = () => {
 
   }
   const editTodo = (task) => {
-    console.log('editTodo', task)
+    // console.log('editTodo', task)
     const t = todos.filter(todo => todo.id === task.id)
     t.title = task.title
     t.description = task.description
 
-    // setTodos([...todos, task])
+    setTodos([...todos, task])
     //edit todo in Backend
-            // fetch(`${APIURL}/${task.id}`, {
-            //   method: 'PUT',
-            //   body: JSON.stringify(task),
-            //   headers: {
-            //     'Content-Type': 'application/json'
-            //   }
-            // })
-            // .then(res => res.json())
-            // .then(data => console.log(data))
+            fetch(`${APIURL}/${task.id}`, {
+              method: 'PUT',
+              body: JSON.stringify(task),
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
   }
 
   const EditTodo = (t) => {
@@ -97,7 +97,7 @@ const loadTodos = () => {
         todos={todos}
         onInsert={AddTodo}
         onDelete={DeleteTodo}
-        onEdit={EditTodo}
+        onEdit={editTodo}
 
       />
     </div>
