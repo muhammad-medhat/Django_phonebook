@@ -1,72 +1,47 @@
 import React, { useState } from 'react';
 import Editable from '../com/Editable';
+import EditInlup from '../com/editInp';
+import InlineEdit from '../com/inlineEdit';
 
 const TodoSingle = (props)=>  {
     const editTODO = (t)=>{
-        console.log('edit', t)
-        // this.props.history.replace(`/todoform/${t.id}/${t.title}`)
+        // console.log('edit', t)
     }
-    const {todo, del} = props
+    const {todo, del, edit} = props
+    // console.log('props', props)
 
     const [isEditing, setIsEditing] = useState(false);
     const [task, setTask] = useState(todo);
 
         const t = todo
-       console.log(`props ${t.id}`, props);
+    //    console.log(`props ${t.id}`, props);
     //    console.log('single task', t);
+
         return (  
             <>
             <tr id={t.id}>
                 <td>{t.id}</td>
                 <td>
-                    {/* {t.title} */}
-                    <Editable
-                        text={t.title} 
-                        placeholder="Write a task name"
-                        childRef={`${t.id}-title`}
-                        type="input"
-                    >
-                    <input
-                        ref={`${t.id}-title`}
-
-                        type="text"
-                        name="task"
-                        placeholder="Write a task name"
-                        value={t.title}
-                        onChange={e => setTask({...task, title: e.target.value})}
-                    />
-                    </Editable>
+                    {/* <EditInlup value={t.title} setValue={() => setTask(...todo, {title: 'xx'})} /> */}
+                    <EditInlup 
+                        value={t.title} 
+                        edit={(e) => edit({...t, title: e})}  /> 
                 
                 </td>
                 <td>
-                    {/* {t.description} */}
-                    <Editable
-                    text={t.description}
-                    placeholder="Description for the task"
-                    type="textarea"
-                    childRef={`${t.id}-description`}
+                
 
-                    >
-                          <textarea
-                            name="description"
-                            ref={`${t.id}-description`}
-                            placeholder="Description for the task"
-                            rows="5"
-                            value={t.description}
-                            onChange={e => setTask({...task, description: e.target.value})}
-                        />
-                    </Editable>
+                    <EditInlup 
+                        value={t.description}  
+                        edit={(e) => edit({...t, description: e})}  /> 
+
                 </td>
 
-                <td onClick={()=>editTODO(t)}>ee
-                    <i className="fas fa-edit" ></i>
-                </td>
+
                 <td>
-                    <span onClick={()=>del(t.id)}>
-                    dd
-                        <i className="far fa-trash-alt" ></i>
-
-                    </span>
+                    <button  onClick={()=>del(t.id)} className={"btn btn-danger btn-sm"}>
+                    &#x2715;
+                    </button>
                 </td>
 
 

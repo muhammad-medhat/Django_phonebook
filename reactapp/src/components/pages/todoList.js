@@ -10,24 +10,6 @@ const TodoList = (props) => {
 
     const {todos, onInsert, onDelete, onEdit} = props
 
-
-
-    /**
-     * Update the todo list  
-     */
-
-
-    function _handleFocus(e){ 
-        console.log('Handle focus', e)
-    }
-
-    function _handleFocusOut(text) {
-        debugger
-        console.log('Left editor with text: ' + text);
-        console.log('todo', todo)
-        onEdit(todo)
-    }
-
         return (  
         <>
         <h1>Todo List comp</h1>
@@ -43,7 +25,6 @@ const TodoList = (props) => {
                             <th scope="col">title</th>
                             <th scope="col">description </th>
                             <th scope="col">...</th>
-                            <th scope="col">...</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,6 +34,7 @@ const TodoList = (props) => {
                                 <TodoSingle key={t.id} 
                                     todo={t}
                                     del={onDelete}
+                                    edit={onEdit}
                                 />
 
                             )
