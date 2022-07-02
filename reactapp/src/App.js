@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,21 +7,13 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import './App.css';
 import TodoList from './components/pages/todoList';
 import ContactList from './components/pages/contactsList';
-=======
-import React, { useState, useEffect } from "react";
->>>>>>> phonebook
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import "@fortawesome/fontawesome-svg-core/styles.css";
 
-import "./App.css";
-import TodoList from "./components/pages/todoList";
 
 function App() {
   const APIURL = "http://localhost:8000/api/tasks";
   // const APIURL = 'https://jsonplaceholder.typicode.com/todos'
 
-<<<<<<< HEAD
   const [todos, setTodos] = useState([])
   const [contacts, setContacts] = useState([])
   useEffect(() => {
@@ -37,21 +28,6 @@ const loadTodos = () => {
   .then(res => res.json())
   .then(data => setTodos(data))
 }
-=======
-  const [todos, setTodos] = useState([]);
-  useEffect(() => {
-    console.log("useEffect...");
-    // const start = new Date().getTime()
-    // console.log(start)
-    loadTodos();
-  }, []);
-
-  const loadTodos = () => {
-    fetch(APIURL)
-      .then((res) => res.json())
-      .then((data) => setTodos(data));
-  };
->>>>>>> phonebook
 
   const loadContacts = () => {
     fetch('http://localhost:8000/api/contacts')
