@@ -1,5 +1,5 @@
 import React ,{ useState} from 'react';
-import ContactForm from '../com/ContactForm';
+import ContactForm from '../com/contactForm';
 import ContactSingle from '../com/contactSingle';
 // import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
@@ -8,7 +8,7 @@ const ContactList = (props) => {
     // console.log('props', props);
 
 
-    const {Contacts, onInsert, onDelete, onEdit} = props
+    const {contacts, onInsert, onDelete, onEdit} = props
 
         return (  
         <>
@@ -30,7 +30,7 @@ const ContactList = (props) => {
                     </thead>
                     <tbody>
                     {
-                            Contacts.map( c => {
+                            contacts.map( c => {
                             return(
                                 <ContactSingle key={c.id} 
                                     Contact={c}

@@ -6,6 +6,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 
 import './App.css';
 import TodoList from './components/pages/todoList';
+import ContactList from './components/pages/contactsList';
 
 
 
@@ -14,11 +15,12 @@ function App() {
   // const APIURL = 'https://jsonplaceholder.typicode.com/todos'
 
   const [todos, setTodos] = useState([])
+  const [contacts, setContacts] = useState([])
   useEffect(() => {
     console.log('useEffect...')
                       // const start = new Date().getTime()
                       // console.log(start)
-    loadTodos()
+    appState == 'todos' ? loadTodos() : loadContacts()
   }, [])
   
 const loadTodos = () => {
@@ -26,6 +28,13 @@ const loadTodos = () => {
   .then(res => res.json())
   .then(data => setTodos(data))
 }
+
+  const loadContacts = () => {
+    fetch('http://localhost:8000/api/contacts')
+    .then(res => res.json())
+    .then(data => setContacts(data))
+  } 
+
 
   const AddTodo = (todo) => {
     console.log('AddTodo', todo)
@@ -90,16 +99,32 @@ const loadTodos = () => {
       .then(res => res.json())
       .then(data => console.log(data))
     }
-
-  return (
-    <div className="App">
-      <TodoList 
+    const renderTodos = () => {
+      return(
+        <TodoList 
         todos={todos}
         onInsert={AddTodo}
         onDelete={DeleteTodo}
         onEdit={editTodo}
 
       />
+      )
+    }
+    const renderPhonebook = () => {
+      return(
+        <ContactList 
+        contacts={contacts}
+        onInsert={AddTodo}
+        onDelete={DeleteTodo}
+        onEdit={editTodo}
+
+      />
+      )
+    }
+const [appState, setAppState] = useState('todosa')
+  return (
+    <div className="App">
+      {appState === 'todos' ? renderTodos() : renderPhonebook()}
     </div>
   );
 }
