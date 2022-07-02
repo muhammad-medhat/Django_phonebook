@@ -12,7 +12,7 @@ const TodoList = (props) => {
 
         return (  
         <>
-        <h1>Todo List comp</h1>
+        <h1 className='main'>Todo List comp</h1>
         <div className="container">
                <h2>add task</h2>
                <TodoForm 

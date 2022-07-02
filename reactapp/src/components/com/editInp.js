@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-const EditInlup = (props) => {
+import './style.css';
+const EditInp = (props) => {
   // console.log('EditInlup props', props);
 
   const [value, setValue] = useState(props.value);
@@ -31,7 +32,7 @@ const EditInlup = (props) => {
 
   const renderNormal = () => {
     // console.log("renderNormal", value);
-    return <span onClick={toggleEdit}>{value}</span>;
+    return <div onClick={toggleEdit}>{value}</div>;
   };
 
   const renderEdit = () => {
@@ -56,4 +57,4 @@ const EditInlup = (props) => {
   return <>{isEditing ? renderEdit() : renderNormal()}</>;
 };
 
-export default EditInlup;
+export default EditInp;

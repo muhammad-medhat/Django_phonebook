@@ -39,7 +39,16 @@
 }
 
 
-
+h1.main{
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0;
+  padding: 1em;
+  padding-left: 40%;
+  margin: auto;
+  border-bottom: solid 1px #ddd;
+  background: #ccc;
+}
 h1,h2,h3,h4,h5,h6 {
   text-align: left;
   text-transform: capitalize;
