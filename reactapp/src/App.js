@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,13 +8,21 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import './App.css';
 import TodoList from './components/pages/todoList';
 import ContactList from './components/pages/contactsList';
+=======
+import React, { useState, useEffect } from "react";
+>>>>>>> phonebook
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 
+import "./App.css";
+import TodoList from "./components/pages/todoList";
 
 function App() {
-  const APIURL='http://localhost:8000/api/tasks'
+  const APIURL = "http://localhost:8000/api/tasks";
   // const APIURL = 'https://jsonplaceholder.typicode.com/todos'
 
+<<<<<<< HEAD
   const [todos, setTodos] = useState([])
   const [contacts, setContacts] = useState([])
   useEffect(() => {
@@ -28,6 +37,21 @@ const loadTodos = () => {
   .then(res => res.json())
   .then(data => setTodos(data))
 }
+=======
+  const [todos, setTodos] = useState([]);
+  useEffect(() => {
+    console.log("useEffect...");
+    // const start = new Date().getTime()
+    // console.log(start)
+    loadTodos();
+  }, []);
+
+  const loadTodos = () => {
+    fetch(APIURL)
+      .then((res) => res.json())
+      .then((data) => setTodos(data));
+  };
+>>>>>>> phonebook
 
   const loadContacts = () => {
     fetch('http://localhost:8000/api/contacts')
@@ -37,58 +61,35 @@ const loadTodos = () => {
 
 
   const AddTodo = (todo) => {
-    console.log('AddTodo', todo)
-    setTodos([...todos, todo])
+    console.log("AddTodo", todo);
+    setTodos([...todos, todo]);
     //insert todo to Backend
     fetch(APIURL, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(todo),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        "Content-Type": "application/json",
+      },
     })
-    .then(res => res.json())
-    .then(data => console.log(data))
-
-  }
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
   const DeleteTodo = (id) => {
-    console.log(`deleting: ${id}`)
-    setTodos(todos.filter(todo => todo.id !== id))
+    console.log(`deleting: ${id}`);
+    setTodos(todos.filter((todo) => todo.id !== id));
 
     //delete todo from Backend
-    deleteB(id)
-
-  }
+    deleteB(id);
+  };
   const editTodo = (task) => {
     // console.log('editTodo', task)
-    const t = todos.filter(todo => todo.id === task.id)
-    t.title = task.title
-    t.description = task.description
+    const t = todos.filter((todo) => todo.id === task.id);
+    t.title = task.title;
+    t.description = task.description;
 
-    setTodos([...todos, task])
     //edit todo in Backend
-            fetch(`${APIURL}/${task.id}`, {
-              method: 'PUT',
-              body: JSON.stringify(task),
-              headers: {
-                'Content-Type': 'application/json'
-              }
-            })
-            .then(res => res.json())
-            .then(data => console.log(data))
-  }
-
-  const EditTodo = (t) => {
-    setTodos(todos.map(todo => {
-      if (todo.id === t.id) {
-        todo.title = t.title
-        todo.description = t.description
-      }
-      return todo
-    }
-    ))
-
-  }
+    updateB(task);
+  };
 
   //backend crud operations
 
@@ -106,7 +107,6 @@ const loadTodos = () => {
         onInsert={AddTodo}
         onDelete={DeleteTodo}
         onEdit={editTodo}
-
       />
       )
     }

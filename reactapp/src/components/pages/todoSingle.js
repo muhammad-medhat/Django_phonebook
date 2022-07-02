@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import Editable from '../com/Editable';
-import EditInlup from '../com/editInp';
-import InlineEdit from '../com/inlineEdit';
+import EditInp from '../com/editInp';
 
 const TodoSingle = (props)=>  {
     const editTODO = (t)=>{
@@ -23,7 +21,7 @@ const TodoSingle = (props)=>  {
                 <td>{t.id}</td>
                 <td>
                     {/* <EditInlup value={t.title} setValue={() => setTask(...todo, {title: 'xx'})} /> */}
-                    <EditInlup 
+                    <EditInp 
                         value={t.title} 
                         edit={(e) => edit({...t, title: e})}  /> 
                 
@@ -31,7 +29,7 @@ const TodoSingle = (props)=>  {
                 <td>
                 
 
-                    <EditInlup 
+                    <EditInp 
                         value={t.description}  
                         edit={(e) => edit({...t, description: e})}  /> 
 
