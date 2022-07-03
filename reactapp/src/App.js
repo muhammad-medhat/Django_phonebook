@@ -12,8 +12,8 @@ import ContactList from './components/pages/contactsList';
 
 
 function App() {
-  const APIURL = "http://localhost:8000/api/tasks";
-  const APIURL_contacts = "http://localhost:8000/api/contacts";
+  const APIURL = "api/tasks";
+  const APIURL_contacts = "api/contacts";
   const [appState, setAppState] = useState('todos')
 
 
