@@ -14,8 +14,7 @@ const TodoList = (props) => {
         <>
         <h1 className='main'>Todo List comp</h1>
         <div className="container">
-               <h2>add task</h2>
-               <TodoForm 
+               <TodoForm title={'Add Task'}
                     onInsert={onInsert}/>
                 <h2>Todo List</h2>
                 <table className="table">

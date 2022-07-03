@@ -13,25 +13,34 @@ const ContactSingle = (props)=>  {
 
         const t = contact
     //    console.log(`props ${t.id}`, props);
-    //    console.log('single contact', t);
+       console.log('single contact', t);
 
         return (  
             <>
+            
+            
             <tr id={t.id}>
                 <td>{t.id}</td>
                 <td>
-                    {/* <EditInlup value={t.title} setValue={() => setcontact(...contact, {title: 'xx'})} /> */}
                     <EditInlup 
-                        value={t.title} 
-                        edit={(e) => edit({...t, title: e})}  /> 
+                        value={t.name} 
+                        edit={(e) => edit({...t, name: e})}  /> 
                 
                 </td>
                 <td>
                 
 
                     <EditInlup 
-                        value={t.description}  
-                        edit={(e) => edit({...t, description: e})}  /> 
+                        value={t.phone}  
+                        edit={(e) => edit({...t, phone: e})}  /> 
+
+                </td>
+                <td>
+                
+
+                    <EditInlup 
+                        value={t.email}  
+                        edit={(e) => edit({...t, email: e})}  /> 
 
                 </td>
 

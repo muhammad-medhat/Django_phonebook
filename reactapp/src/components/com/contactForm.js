@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const ContactForm = (props) => {
   const [contact, setcontact] = useState({ title: "", description: "" });
-  const { onInsert } = props;
+  const { onInsert, title } = props;
 
   // console.log('props', props);
 
@@ -14,31 +14,44 @@ const ContactForm = (props) => {
 
   return (
     <>
+    <h3>{title}</h3>
       <form className=" ">
         <div className="form-group">
-          <label htmlFor="title">contact title</label>
+          <label htmlFor="name">name</label>
           <input
             type="text"
             className="form-control"
-            id="title"
-            name="title"
-            placeholder="contact title"
-            value={contact.title}
-            onChange={(e) => setcontact({ ...contact, title: e.target.value })}
+            id="name"
+            name="name"
+            placeholder="name"
+            value={contact.name}
+            onChange={(e) => setcontact({ ...contact, name: e.target.value })}
           />
         </div>
-
         <div className="form-group">
-          <label htmlFor="description">Description</label>
-          <textarea
+          <label htmlFor="phone"> phone</label>
+          <input
+            type="text"
             className="form-control"
-            id="description"
-            name="description"
-            rows="3"
-            value={contact.description}
-            onChange={(e) => setcontact({ ...contact, description: e.target.value })}
+            id="phone"
+            name="phone"
+            placeholder=" phone"
+            value={contact.phone}
+            onChange={(e) => setcontact({ ...contact, phone: e.target.value })}
           />
         </div>
+        <div className="form-group">
+          <label htmlFor="phone"> email</label>
+          <input
+            type="text"
+            className="form-control"
+            id="email"
+            name="email"
+            placeholder=" email"
+            value={contact.email}
+            onChange={(e) => setcontact({ ...contact, email: e.target.value })}
+          />
+        </div>     
         <button className="btn btn-primary" onClick={(e) => handleSubmit(e)}>
           Add New contact
         </button>

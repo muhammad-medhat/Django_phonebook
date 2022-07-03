@@ -4,7 +4,7 @@ import ContactSingle from '../com/contactSingle';
 // import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 const ContactList = (props) => {
-    const [Contact, setContact] = useState([])
+    const [contact, setContact] = useState([])
     // console.log('props', props);
 
 
@@ -12,10 +12,10 @@ const ContactList = (props) => {
 
         return (  
         <>
-        <h1>Contact List comp</h1>
+        <h1 className='main'>Contact List comp</h1>
         <div className="container">
-               <h2>add task</h2>
-               <ContactForm 
+               <h2>add contact</h2>
+               <ContactForm ptitle={'Add Contact'}
                     onInsert={onInsert}/>
                 <h2>Contact List</h2>
                 <table className="table">
@@ -23,8 +23,8 @@ const ContactList = (props) => {
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col"> name </th>
-                            <th scope="col">email </th>
                             <th scope="col">phone </th>
+                            <th scope="col">email </th>
                             <th scope="col">...</th>
                         </tr>
                     </thead>
@@ -33,7 +33,7 @@ const ContactList = (props) => {
                             contacts.map( c => {
                             return(
                                 <ContactSingle key={c.id} 
-                                    Contact={c}
+                                    contact={c}
                                     del={onDelete}
                                     edit={onEdit}
                                 />

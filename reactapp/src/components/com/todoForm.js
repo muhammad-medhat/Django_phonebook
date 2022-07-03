@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const TodoForm = (props) => {
   const [todo, setTodo] = useState({ title: "", description: "" });
-  const { onInsert } = props;
+  const { onInsert, title } = props;
 
   // console.log('props', props);
 
@@ -14,6 +14,7 @@ const TodoForm = (props) => {
 
   return (
     <>
+        <h3>{title}</h3>
       <form className=" ">
         <div className="form-group">
           <label htmlFor="title">Task title</label>

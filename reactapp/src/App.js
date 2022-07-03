@@ -10,18 +10,23 @@ import ContactList from './components/pages/contactsList';
 
 
 
+
 function App() {
   const APIURL = "http://localhost:8000/api/tasks";
+  const APIURL_contacts = "http://localhost:8000/api/contacts";
+  const [appState, setAppState] = useState('todos')
+
+
   // const APIURL = 'https://jsonplaceholder.typicode.com/todos'
 
   const [todos, setTodos] = useState([])
   const [contacts, setContacts] = useState([])
   useEffect(() => {
-    console.log('useEffect...')
-                      // const start = new Date().getTime()
-                      // console.log(start)
+
+    console.log(`useEffect ${appState}...`)
     appState == 'todos' ? loadTodos() : loadContacts()
-  }, [])
+
+  }, [appState])
   
 const loadTodos = () => {
   fetch(APIURL)
@@ -30,7 +35,7 @@ const loadTodos = () => {
 }
 
   const loadContacts = () => {
-    fetch('http://localhost:8000/api/contacts')
+    fetch(APIURL_contacts)
     .then(res => res.json())
     .then(data => setContacts(data))
   } 
@@ -69,6 +74,9 @@ const loadTodos = () => {
 
   //backend crud operations
 
+  /**
+   * Todo
+   */
     const deleteB = (id) => {
       fetch(`${APIURL}/${id}`, {
         method: 'DELETE'
@@ -76,7 +84,72 @@ const loadTodos = () => {
       .then(res => res.json())
       .then(data => console.log(data))
     }
-    const renderTodos = () => {
+    const updateB = (task) => {
+      fetch(`${APIURL}/${task.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(task),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+
+      .then(res => res.json())
+      .then(data => console.log(data))
+    }
+
+    /**
+     * Contact:
+     */
+    const insertB_contact = (contact) => {
+      fetch(APIURL_contacts, {
+        method: "POST",
+        body: JSON.stringify(contact),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+  
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+    }
+    const deleteB_contacts = (id) => {
+      fetch(`${APIURL_contacts}/${id}`, {
+        method: 'DELETE'
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+    }
+    const updateB_contacts = (contact) => {
+      fetch(`${APIURL_contacts}/${contact.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(contact),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+    }
+  const AddContact = (contact) => {
+    console.log("AddContact", contact);
+    setContacts([...contacts, contact]);   
+    insertB_contact(contact);
+  }
+  const DeleteContact = (id) => {
+    console.log(`deleting: ${id}`);
+    setContacts(contacts.filter((contact) => contact.id !== id));
+    deleteB_contacts(id);
+  }
+  const editContact = (contact) => {
+    // console.log('editContact', contact)
+    const c = contacts.filter((contact) => contact.id === contact.id);
+    c.name = contact.name;
+    c.email = contact.email;
+    c.phone = contact.phone;
+    updateB_contacts(contact);
+  }
+
+  const renderTodos = () => {
       return(
         <TodoList 
         todos={todos}
@@ -89,19 +162,23 @@ const loadTodos = () => {
     const renderPhonebook = () => {
       return(
         <ContactList 
-        contacts={contacts}
-        onInsert={AddTodo}
-        onDelete={DeleteTodo}
-        onEdit={editTodo}
+          contacts={contacts}
+          onInsert={AddContact}
+          onDelete={DeleteContact}
+          onEdit={editContact}
 
       />
       )
     }
-const [appState, setAppState] = useState('todosa')
   return (
-    <div className="App">
-      {appState === 'todos' ? renderTodos() : renderPhonebook()}
-    </div>
+      <div className="App">
+        <div className="navbar">
+          <button className='btn btn-primary' onClick={()=>setAppState('todos')}>  Todos  </button>
+          <button className='btn btn-primary' onClick={()=>setAppState('phone')}>Phonebook</button>
+        </div>
+        {appState === 'todos' ? renderTodos() : renderPhonebook()}
+      </div>    
+
   );
 }
 
