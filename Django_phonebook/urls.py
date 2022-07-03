@@ -26,4 +26,5 @@ urlpatterns = [
     path('api/', include('api.urls')),
 
     path('tasks/', TemplateView.as_view(template_name='index.html')),
+    path('', TemplateView.as_view(template_name='index.html')),
 ]
